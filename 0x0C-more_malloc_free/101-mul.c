@@ -2,14 +2,17 @@
 #include "main.h"
 #include <stdio.h>
 
+#define ERR_MSG "Error"
+
 /**
- * check_dig - a function that checks a string for digits
+ * is_digit - a function that checks if a string contains non digit char
  * @s: string
  *
- * Return: 1 if digit was found , otherwise 0
+ * Return: 0 if a non digit is found
+ * otherwise 1 .
  */
 
-int check_dig(char *s)
+int is_digit(char *s)
 {
 	int h = 0;
 
@@ -23,82 +26,81 @@ int check_dig(char *s)
 }
 
 /**
- * _lengt - length of a string
- * @s: string
+ * _strlen - a function that length of a string
+ * @s: evaluated string
  *
- * Return: string length
+ * Return: length of a string
  */
 
-int _lengt(char *s)
+int _strlen(char *s)
 {
 	int h = 0;
 
 	while (s[h] != '\0')
-
+	{
 		h++;
-
+	}
 	return (h);
 }
 
 /**
- * main_err - checks errors for main
- *
+ * errors - a function that takes care of errors
+ * for main
  */
 
-void main_err(void)
+void errors(void)
 {
-	printf("ERROR\n");
+	printf("Error\n");
 	exit(98);
 }
 
 /**
- * main - a function that multiplies two
- * positive numbers
- * @argc: argument input
- * @argv: argument vector
- *
- * Return: Always 0 (Success)
+ * main - a function that multiplies two positive numbers
+ * @argc: number of arguments
+ * @argv: array of arguments
+ * Return: 0
  */
+
 int main(int argc, char *argv[])
 {
-	char *st, *sz;
-	int eln1, eln2, eln, h, m, iq, eq, *fin, d = 0;
+	char *y, *z;
+	int len1, len2, len, h, cy, iq, eq, *result, d = 0;
 
-	st = argv[1], sz = argv[2];
-	if (argc != 3 || !check_dig(st) || !check_dig(sz))
-		main_err();
-	eln1 = _lengt(st);
-	eln2 = _lengt(sz);
-	eln = eln1 + eln2 + 1;
-	fin = malloc(sizeof(int) * eln);
-	if (!fin)
+	y = argv[1], z = argv[2];
+	if (argc != 3 || !is_digit(y) || !is_digit(z))
+		errors();
+	len1 = _strlen(y);
+	len2 = _strlen(z);
+	len = len1 + len2 + 1;
+	result = malloc(sizeof(int) * len);
+	if (!result)
 		return (1);
-	for (h = 0; h <= eln1 + eln2; h++)
-		fin[h] = 0;
-	for (eln1 = eln1 - 1; eln1 >= 0; eln1--)
+	for (h = 0; h <= len1 + len2; h++)
+		result[h] = 0;
+	for (len1 = len2 - 1; len1 >= 0; len--)
 	{
-		iq = st[eln2] - '0';
-		m = 0;
-		for (eln2 = _lengt(sz) - 1; eln2 >= 0; eln2--)
+		iq = y[len1] - '0';
+		cy = 0;
+		for (len2 = _strlen(z) - 1; len2 >= 0; len2--)
 		{
-			eq = sz[eln2] - '0';
-			m += fin[eln1 + eln2 + 1] + (iq * eq);
-			fin[eln1 + eln2 + 1] = m % 10;
-			m /= 10;
+			eq = z[len2] - '0';
+			cy += result[len1 + len2 + 1] + (iq * eq);
+			result[len1 + len2] = cy % 10;
+			cy /= 10;
 		}
-		if (m > 0)
-			fin[eln1 + eln2 + 1] += m;
+		if (cy > 0)
+			result[len1 + len2 + 1] += cy;
 	}
-	for (h = 0; h < eln - 1; h++)
+	for (h = 0; h < len - 1; h++)
 	{
-		if (fin[h])
+		if (result[h])
 			d = 1;
 		if (d)
-			putchar(fin[h] + '0');
+			putchar(result[h] + '0');
 	}
 	if (!d)
-		putchar('0');
+		putchar ('0');
 	putchar('\n');
-	free(fin);
+	free(result);
 	return (0);
 }
