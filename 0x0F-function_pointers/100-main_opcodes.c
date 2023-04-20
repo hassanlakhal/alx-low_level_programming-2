@@ -11,8 +11,8 @@
 
 int main(int argc, char *argv[])
 {
-	int numbytes, h;
-	char *ayh;
+	int numbytes, i;
+	char *opc;
 
 	if (argc != 2)
 	{
@@ -28,16 +28,16 @@ int main(int argc, char *argv[])
 		exit(2);
 	}
 
-	ayh = (char *)main;
+	opc = (char *)main;
 
-	for (h = 0; h < numbytes; h++)
+	for (i = 0; i < numbytes; i++)
 	{
-		if (h == numbytes - 1)
+		if (i == numbytes - 1)
 		{
-			printf("%02hhx\n", ayh[h]);
+			printf("%02hhx\n", opc[i]);
 			break;
 		}
-		printf("%02hhx", ayh[h]);
+		printf("%02hhx ", opc[i]);
 	}
 	return (0);
 }
