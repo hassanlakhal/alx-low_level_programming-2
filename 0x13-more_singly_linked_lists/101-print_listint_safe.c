@@ -1,6 +1,5 @@
 #include "lists.h"
 #include <stdio.h>
-#include <stdlib.h>
 
 /**
  * print_listint_safe - a function that prints a listint_t linked list
@@ -11,13 +10,13 @@
 
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t raqm = 0;
+	size_t num_nodes = 0;
 	long int tawil;
 
 	while (head)
 	{
 		tawil = head - head->next;
-		raqm++;
+		num_nodes++;
 		printf("[%p] %d\n", (void *)head, head->n);
 
 		if (tawil > 0)
@@ -30,5 +29,5 @@ size_t print_listint_safe(const listint_t *head)
 		}
 	}
 
-	return (raqm);
+	return (num_nodes);
 }
