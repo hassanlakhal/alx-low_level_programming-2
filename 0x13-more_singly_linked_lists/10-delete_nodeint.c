@@ -16,10 +16,9 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 	listint_t *hdj;
 	unsigned int md;
 
-	{
-		if (*head == NULL)
+	if (*head == NULL)
 			return (-1);
-	}
+
 	hin = *head;
 
 	if (index == 0)
@@ -33,13 +32,11 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 	{
 		if (hin == NULL)
 			return (-1);
-	}
-
 		hin = hin->next;
-		hdj = hin->next;
-		hin->next = hdj->next;
+	}
+	hdj = hin->next;
+	hin->next = hdj->next;
+	free(hdj);
 
-		free(hdj);
-
-		return (1);
+	return (1);
 }
