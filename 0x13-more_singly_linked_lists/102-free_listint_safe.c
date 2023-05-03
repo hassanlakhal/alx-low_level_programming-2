@@ -25,7 +25,7 @@ size_t free_listint_safe(listint_t **h)
 		if (gher > 0)
 		{
 			hin = (*h)->next;
-			free(*h)
+			free(*h);
 			*h = hin;
 			tol++;
 		}
