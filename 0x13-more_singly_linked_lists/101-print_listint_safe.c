@@ -11,22 +11,17 @@
 
 size_t print_listint_safe(const listint_t *head)
 {
+	size_t raqm = 0;
 	long int tawil;
-	size_t raqm;
-
-	raqm = 0;
 
 	while (head)
 	{
 		tawil = head - head->next;
 		raqm++;
-
 		printf("[%p] %d\n", (void *)head, head->n);
 
 		if (tawil > 0)
-		{
 			head = head->next;
-		}
 
 		else
 		{
